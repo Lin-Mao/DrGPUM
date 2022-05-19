@@ -81,6 +81,7 @@ HPCRUN_SANITIZER_WHITELIST=<functions to be monitored during execution, default:
 HPCRUN_SANITIZER_BLACKLIST=<functions not monitored during execution, default: 0>
 HPCRUN_SANITIZER_READ_TRACE_IGNORE=<if read addresses are ignored, default: 0>
 HPCRUN_SANITIZER_DATA_FLOW_HASH=<if SHA256 hash is calculated for every operation, default: 0>
+HPCRUN_SANITIZER_LIVENESS_ONGPU=<if enable memory liveness analysis on GPU, default: 0>
 HPCRUN_SANITIZER_GPU_ANALYSIS_BLOCKS=<number of gpu blocks dedicated for analysis, default: 0>
 ```
 
