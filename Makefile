@@ -1,5 +1,5 @@
 # Modified from https://github.com/Jokeren/compute-sanitizer-samples/tree/master/MemoryTracker
-PROJECT ?= gpu-patch.fatbin gpu-patch-address.fatbin
+PROJECT ?= gpu-patch.fatbin gpu-patch-address.fatbin gpu-patch-aux.fatbin
 PROJECT_ANALYSIS ?= gpu-analysis.fatbin
 
 # Location of the CUDA Toolkit
