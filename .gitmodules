@@ -10,3 +10,6 @@
 [submodule "jquery.graphviz.svg"]
 	path = jquery.graphviz.svg
 	url = https://github.com/Jokeren/jquery.graphviz.svg.git
+[submodule "torch-monitor"]
+	path = torch-monitor
+	url = git@github.com:Lin-Mao/torch-monitor.git
