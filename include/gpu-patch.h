@@ -75,6 +75,7 @@ typedef struct gpu_patch_buffer {
   uint32_t flags;  // read or write or both
   void *records;
   void *aux;
+  void *torch_aux;
 } gpu_patch_buffer_t;
 
 #endif
