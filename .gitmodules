@@ -12,4 +12,4 @@
 	url = https://github.com/Jokeren/jquery.graphviz.svg.git
 [submodule "torch-monitor"]
 	path = torch-monitor
-	url = git@github.com:Lin-Mao/torch-monitor.git
+	url = https://github.com/Jokeren/torch-monitor.git
