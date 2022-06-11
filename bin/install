@@ -53,6 +53,9 @@ source ${SPACK_ROOT}/share/spack/setup-env.sh
 spack install --only dependencies hpctoolkit ^dyninst@master ^binutils@2.34+libiberty~nls 
 spack install libmonitor@master+dlopen+hpctoolkit
 
+# Fix bug
+spack install mbedtls gotcha
+
 # Install gpu-patch
 cd $SOURCE_DIR
 make PREFIX=$DIR/gpu-patch SANITIZER_PATH=$SANITIZER_PATH CUDA_PATH=$CUDA_PATH install
