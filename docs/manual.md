@@ -83,6 +83,7 @@ HPCRUN_SANITIZER_READ_TRACE_IGNORE=<if read addresses are ignored, default: 0>
 HPCRUN_SANITIZER_DATA_FLOW_HASH=<if SHA256 hash is calculated for every operation, default: 0>
 HPCRUN_SANITIZER_LIVENESS_ONGPU=<if enable memory liveness analysis on GPU, default: 0>
 HPCRUN_SANITIZER_TORCH_ANALYSIS=<if enable PyTorch memory analysis, default: 0>
+HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=<if enable PyTorch analysis on GPU, default: 0>
 HPCRUN_SANITIZER_GPU_ANALYSIS_BLOCKS=<number of gpu blocks dedicated for analysis, default: 0>
 ```
 
