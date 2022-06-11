@@ -59,9 +59,9 @@ memory_access_callback
 
     if (torch_pos != torch_address_dict->size) {
       // Find an existing entry
-      if (atomic_load(torch_address_dict->hit + pos) == 0) {
+      if (atomic_load(torch_address_dict->hit + torch_pos) == 0) {
         // Update
-        atomic_store(torch_address_dict->hit + pos, (uint32_t)1);
+        atomic_store(torch_address_dict->hit + torch_pos, (uint32_t)1);
       } else {
         // Filter out
         keep = 0;
