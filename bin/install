@@ -52,6 +52,7 @@ source ${SPACK_ROOT}/share/spack/setup-env.sh
 # Install hpctoolkit dependencies
 spack install --only dependencies hpctoolkit ^dyninst@master ^binutils@2.34+libiberty~nls 
 spack install libmonitor@master+dlopen+hpctoolkit
+spack install libunwind
 
 # Fix bug
 spack install mbedtls gotcha
@@ -63,11 +64,12 @@ make PREFIX=$DIR/gpu-patch SANITIZER_PATH=$SANITIZER_PATH CUDA_PATH=$CUDA_PATH i
 # Find spack and boost dir
 B=$(spack find --path boost | tail -n 1 | cut -d ' ' -f 3)
 S=${B%/*}
+UNWIND=$(spack find --path libunwind | tail -n 1 | cut -d ' ' -f 3)
 
 # Install redshow
 cd $SOURCE_DIR
 cd redshow
-make PREFIX=$DIR/redshow BOOST_DIR=$B GPU_PATCH_DIR=$DIR/gpu-patch/ install
+make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ install
 
 # install hpctoolkit
 cd $SOURCE_DIR
