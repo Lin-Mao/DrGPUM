@@ -4,7 +4,13 @@ SOURCE_DIR=$(pwd)
 DIR=""
 CUDA_PATH=/usr/local/cuda/
 SANITIZER_PATH=$CUDA_PATH/compute-sanitizer
-PYTORCH_DIR=$1
+
+if [ $1 ]; then
+  PYTORCH_DIR=$1
+else
+  echo "Please specify torch path: ./bin/install PATH_TO_TORCH"
+  exit 0
+fi
 
 if [ $# -eq 0 ]; then
   DIR=$(pwd)/gvprof
@@ -70,6 +76,7 @@ make PREFIX=$DIR/gpu-patch SANITIZER_PATH=$SANITIZER_PATH CUDA_PATH=$CUDA_PATH i
 B=$(spack find --path boost | tail -n 1 | cut -d ' ' -f 3)
 S=${B%/*}
 UNWIND=$(spack find --path libunwind | tail -n 1 | cut -d ' ' -f 3)
+
 PY_DEV=$(spack find --path python@$PY_VERSION | tail -n 1 | cut -d ' ' -f 3)
 
 # Install torch monitor
