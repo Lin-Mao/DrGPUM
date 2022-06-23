@@ -73,16 +73,17 @@ UNWIND=$(spack find --path libunwind | tail -n 1 | cut -d ' ' -f 3)
 PY_DEV=$(spack find --path python@$PY_VERSION | tail -n 1 | cut -d ' ' -f 3)
 
 # Install torch monitor
+cd $SOURCE_DIR
 cd torch-monitor
-make PREFIX=$DIR/torch-monitor PYTHON_INCLUDE_DIR=$PY_DEV/include/python$PY_VERSION \ 
-PYTHON_LIB_DIR=$PY_DEV/lib/python$PY_VERSION PYTHON_VERSION=$PY_VERSION \ 
+make PREFIX=$DIR/torch-monitor PYTHON_INCLUDE_DIR=$PY_DEV/include/python$PY_VERSION \
+PYTHON_LIB_DIR=$PY_DEV/lib/python$PY_VERSION PYTHON_VERSION=$PY_VERSION \
 TORCH_DIR=$PYTORCH_DIR DEBUG=1 install
 
 # Install redshow
 cd $SOURCE_DIR
 cd redshow
-make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ \ 
-TORCH_MONITOR_DIR=$DIR/torch_monitor DEBUG=1 install
+make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ \
+TORCH_MONITOR_DIR=$DIR/torch-monitor DEBUG=1 install
 
 # install hpctoolkit
 cd $SOURCE_DIR
