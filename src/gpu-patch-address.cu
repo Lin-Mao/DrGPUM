@@ -29,6 +29,10 @@ memory_access_callback
 {
   gpu_patch_buffer_t *buffer = (gpu_patch_buffer_t *)user_data;
 
+  if (!sample_callback(buffer->block_sampling_frequency, buffer->block_sampling_offset)) {
+    return SANITIZER_PATCH_SUCCESS;
+  }
+
   // 1. Init values
   uint32_t active_mask = __activemask();
   uint32_t laneid = get_laneid();
