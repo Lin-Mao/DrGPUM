@@ -88,16 +88,16 @@ TORCH_MONITOR_DIR=$DIR/torch-monitor DEBUG=1 install
 # install hpctoolkit
 cd $SOURCE_DIR
 cd hpctoolkit
-mkdir build
+# mkdir build
 cd build
-../configure --prefix=$DIR/hpctoolkit --with-cuda=$CUDA_PATH \
---with-sanitizer=$SANITIZER_PATH --with-gpu-patch=$DIR/gpu-patch \
---with-redshow=$DIR/redshow --with-spack=$S  --enable-develop
-make install -j16
+# ../configure --prefix=$DIR/hpctoolkit --with-cuda=$CUDA_PATH \
+# --with-sanitizer=$SANITIZER_PATH --with-gpu-patch=$DIR/gpu-patch \
+# --with-redshow=$DIR/redshow --with-spack=$S  --enable-develop
+make install -j
 
 cd $SOURCE_DIR
-mkdir $DIR/bin
-mkdir $DIR/python
+# mkdir $DIR/bin
+# mkdir $DIR/python
 cp ./bin/gvprof $DIR/bin/
 cp -r ./python $DIR
 echo "python $DIR/python/gviewer.py "'${@:1}' > $DIR/bin/gviewer
