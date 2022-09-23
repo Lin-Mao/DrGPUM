@@ -82,6 +82,7 @@ TORCH_DIR=$PYTORCH_DIR DEBUG=1 install
 # Install redshow
 cd $SOURCE_DIR
 cd redshow
+make clean
 make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ \
 TORCH_MONITOR_DIR=$DIR/torch-monitor DEBUG=1 install
 
@@ -90,9 +91,9 @@ cd $SOURCE_DIR
 cd hpctoolkit
 # mkdir build
 cd build
-# ../configure --prefix=$DIR/hpctoolkit --with-cuda=$CUDA_PATH \
-# --with-sanitizer=$SANITIZER_PATH --with-gpu-patch=$DIR/gpu-patch \
-# --with-redshow=$DIR/redshow --with-spack=$S  --enable-develop
+../configure --prefix=$DIR/hpctoolkit --with-cuda=$CUDA_PATH \
+--with-sanitizer=$SANITIZER_PATH --with-gpu-patch=$DIR/gpu-patch \
+--with-redshow=$DIR/redshow --with-spack=$S  --enable-develop
 make install -j
 
 cd $SOURCE_DIR
