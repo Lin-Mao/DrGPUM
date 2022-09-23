@@ -59,7 +59,7 @@ typedef struct gpu_patch_analysis_address {
 typedef struct gpu_patch_aux_address_dict {
   uint32_t size;
   gpu_patch_analysis_address_t start_end[GPU_PATCH_ADDRESS_DICT_SIZE];
-  uint32_t hit[GPU_PATCH_ADDRESS_DICT_SIZE];
+  uint8_t hit[GPU_PATCH_ADDRESS_DICT_SIZE];
 } gpu_patch_aux_address_dict_t;
 
 typedef struct gpu_patch_buffer {
