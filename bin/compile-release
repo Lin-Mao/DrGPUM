@@ -75,25 +75,27 @@ PY_DEV=$(spack find --path python@$PY_VERSION | tail -n 1 | cut -d ' ' -f 3)
 # Install torch monitor
 cd $SOURCE_DIR
 cd torch-monitor
+make clean
 make PREFIX=$DIR/torch-monitor PYTHON_INCLUDE_DIR=$PY_DEV/include/python$PY_VERSION \
 PYTHON_LIB_DIR=$PY_DEV/lib/python$PY_VERSION PYTHON_VERSION=$PY_VERSION \
-TORCH_DIR=$PYTORCH_DIR DEBUG=1 install
+TORCH_DIR=$PYTORCH_DIR install
 
 # Install redshow
 cd $SOURCE_DIR
 cd redshow
 make clean
 make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ \
-TORCH_MONITOR_DIR=$DIR/torch-monitor DEBUG=1 install
+TORCH_MONITOR_DIR=$DIR/torch-monitor install
 
 # install hpctoolkit
 cd $SOURCE_DIR
 cd hpctoolkit
-# mkdir build
+rm -rf build
+mkdir build
 cd build
 ../configure --prefix=$DIR/hpctoolkit --with-cuda=$CUDA_PATH \
 --with-sanitizer=$SANITIZER_PATH --with-gpu-patch=$DIR/gpu-patch \
---with-redshow=$DIR/redshow --with-spack=$S  --enable-develop
+--with-redshow=$DIR/redshow --with-spack=$S
 make install -j
 
 cd $SOURCE_DIR
