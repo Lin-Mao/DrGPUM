@@ -51,7 +51,7 @@ memory_access_callback
       // Find an existing entry
       if (atomic_load(address_dict->hit + pos) == 0) {
         // Update
-        atomic_store(address_dict->hit + pos, (uint32_t)1);
+        atomic_store(address_dict->hit + pos, (uint8_t)1);
       } else {
         // Filter out
         keep = 0;
