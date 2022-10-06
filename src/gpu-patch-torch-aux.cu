@@ -46,7 +46,7 @@ memory_access_callback
       // Find an existing entry
       if (atomic_load(address_dict->hit + pos) == 0) {
         // Update
-        atomic_store(address_dict->hit + pos, (uint8_t)1);
+        atomic_store(address_dict->hit + pos, 1);
       } else {
         // Filter out
         keep = 0;
@@ -61,7 +61,7 @@ memory_access_callback
       // Find an existing entry
       if (atomic_load(torch_address_dict->hit + torch_pos) == 0) {
         // Update
-        atomic_store(torch_address_dict->hit + torch_pos, (uint8_t)1);
+        atomic_store(torch_address_dict->hit + torch_pos, 1);
       } else {
         // Filter out
         keep = 0;
