@@ -52,14 +52,11 @@ memory_access_callback
         // Filter out
         keep = 0;
       }
-      if (atomic_load(address_dict->read) == 0 || atomic_load(address_dict->write) == 0) {
-        if (static_cast<GPUPatchFlags>(flags) == GPU_PATCH_READ) {
-          atomic_store(address_dict->read + pos, (uint8_t)1);
-        } else if (static_cast<GPUPatchFlags>(flags) == GPU_PATCH_WRITE) {
-          atomic_store(address_dict->write + pos, (uint8_t)1);
-        } else {
-          // shouldn't be taken
-        }
+      if (atomic_load(address_dict->read + pos) == 0 && static_cast<GPUPatchFlags>(flags) == GPU_PATCH_READ) {
+        atomic_store(address_dict->read + pos, (uint8_t)1);
+      }
+      if (atomic_load(address_dict->write + pos) == 0 && static_cast<GPUPatchFlags>(flags) == GPU_PATCH_WRITE) {
+        atomic_store(address_dict->write + pos, (uint8_t)1);
       }
     } 
   }
