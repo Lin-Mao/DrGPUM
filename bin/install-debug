@@ -44,7 +44,7 @@ fi
 
 cd $DIR
 # Install spack
-git clone https://github.com/spack/spack.git
+git clone https://github.com/Lin-Mao/spack.git
 export SPACK_ROOT=$(pwd)/spack
 export PATH=${SPACK_ROOT}/bin:${PATH}
 source ${SPACK_ROOT}/share/spack/setup-env.sh
