@@ -1,18 +1,21 @@
-# GVProf
+# DrGPUM
 
-[![DOI](https://zenodo.org/badge/194196140.svg)](https://zenodo.org/badge/latestdoi/194196140)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7588406.svg)](https://doi.org/10.5281/zenodo.7588406)
 [![CodeFactor](https://www.codefactor.io/repository/github/gvprof/gvprof/badge/develop)](https://www.codefactor.io/repository/github/gvprof/gvprof/overview/develop)
 [![Documentation Status](https://readthedocs.org/projects/gvprof/badge/?version=latest)](https://gvprof.readthedocs.io/en/latest/?badge=latest)
 
 
-GVProf is a value profiler for NVIDIA GPUs to explore value-related inefficiencies in GPU-accelerated applications.
+DrGPUM is a memory profiler for NVIDIA GPUs to explore memory inefficiencies in GPU-accelerated applications.
 
 ## Quick Start
 
 ```bash
-git clone --recursive git@github.com:Jokeren/GVProf.git && cd GVProf
+git clone --recursive https://github.com/Lin-Mao/DrGPUM.git && cd DrGPUM
 
-# Install gvprof
+# Specify PyTorch dir
+export PYTORCH_DIR=path_to_pytorch/torch
+
+# Install DrGPUM
 ./bin/install
 
 # Setup environment variables
