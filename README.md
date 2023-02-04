@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7588406.svg)](https://doi.org/10.5281/zenodo.7588406)
 [![CodeFactor](https://www.codefactor.io/repository/github/lin-mao/drgpum/badge)](https://www.codefactor.io/repository/github/lin-mao/drgpum)
-[![Documentation Status](https://readthedocs.org/projects/gvprof/badge/?version=latest)](https://gvprof.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/drgpum/badge/?version=latest)](https://drgpum.readthedocs.io/en/latest/?badge=latest)
 
 
 DrGPUM is a memory profiler for NVIDIA GPUs to explore memory inefficiencies in GPU-accelerated applications.
@@ -32,9 +32,9 @@ gvprof -v -e memory_liveness ./vectorAdd
 
 ## Documentation
 
-- [Installation Guide](https://gvprof.readthedocs.io/en/latest/install.html)
-- [User's Guide](https://gvprof.readthedocs.io/en/latest/manual.html)
-- [Developer's Guide](https://gvprof.readthedocs.io/en/latest/workflow.html)
+- [Installation Guide](https://drgpum.readthedocs.io/en/latest/install.html)
+- [User's Guide](https://drgpum.readthedocs.io/en/latest/manual.html)
+- [Developer's Guide](https://drgpum.readthedocs.io/en/latest/workflow.html)
 
 ## Papers
 
