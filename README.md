@@ -19,15 +19,15 @@ export PYTORCH_DIR=path_to_pytorch/torch
 ./bin/install
 
 # Setup environment variables
-export GVProfInstall=$(pwd)/gvprof
-export PATH=${GVProfInstall}/bin:$PATH
-export PATH=${GVProfInstall}/hpctoolkit/bin:$PATH
-export PATH=${GVProfInstall}/redshow/bin:$PATH
+export DrGPUM_PATH=$(pwd)/gvprof
+export PATH=${DrGPUM_PATH}/bin:$PATH
+export PATH=${DrGPUM_PATH}/hpctoolkit/bin:$PATH
+export PATH=${DrGPUM_PATH}/redshow/bin:$PATH
 
 # Test a sample
 cd samples/vectorAdd.f32
 make
-gvprof -e redundancy ./vectorAdd
+gvprof -v -e memory_liveness ./vectorAdd
 ```
 
 ## Documentation
