@@ -4,13 +4,13 @@
 
 [Deepwave](https://github.com/ar4/deepwave) is a wave propagation software implemented based on.
 
-We study deepwave version `1154692258da342accd21df02f7fa9ddd008f75f`. The input for deepwave is attached in GVProf's samples.
+We study deepwave version `1154692258da342accd21df02f7fa9ddd008f75f`. The input for deepwave is attached in DrGPUM's samples.
 
 We first add `-lineinfo -g` to the `_make_cuda_extension` function in `setup.py`, and then add `-g` to the `_make_cpp_extension` function. Next we use `pip install .` to install deepwave. 
 
 **Note that this pip is supposed be the pip installed by conda as we use conda across all the python samples**
 
-To run the deepwave example in GVProf, we need to install matplotlib by `conda install matplotlib`.
+To run the deepwave example in DrGPUM, we need to install matplotlib by `conda install matplotlib`.
 
 ## Profiling
 

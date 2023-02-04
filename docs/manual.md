@@ -2,7 +2,7 @@
 
 ## Compile with Line Information
 
-GVProf relies on debug information in binaries to attribute fine-grained value metrics on individual lines, loops, and functions. 
+DrGPUM relies on debug information in binaries to attribute fine-grained value metrics on individual lines, loops, and functions. 
 
 For GPU binaries, we recommend using `-O3 -lineinfo`.
 
@@ -10,7 +10,7 @@ For CPU binaries, we recommend using `-O3 -g`.
 
 For software compiled with CMake system, usually we can edit `CMAKE_C_FLAGS` and `CMAKE_CXX_FLAGS` to add line info flags. Additionally, CUDA line info can be added through `CMAKE_CUDA_FLAGS`.
 
-## Profile Using GVProf
+## Profile Using DrGPUM
 
 The `gvprof` script automates a series of profiling and analysis processes, but supports only basic profiling features. For detailed profiling control, please refer to the next section.
 
@@ -86,10 +86,6 @@ HPCRUN_SANITIZER_TORCH_ANALYSIS=<if enable PyTorch memory analysis, default: 0>
 HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=<if enable PyTorch analysis on GPU, default: 0>
 HPCRUN_SANITIZER_GPU_ANALYSIS_BLOCKS=<number of gpu blocks dedicated for analysis, default: 0>
 ```
-
-## Interpret Profile Data
-
-Currently, GVProf supports using hpcviewer to associate the redundancy metrics with individual GPU source code and using gviewer to process data flow metrics and prune unnecessary nodes/edges. We plan to integrate value pattern metrics into the data flow view for more friendly use of GVProf.
 
 ### Calling context view 
 

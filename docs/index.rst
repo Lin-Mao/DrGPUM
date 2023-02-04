@@ -1,17 +1,17 @@
-.. GVProf documentation master file, created by
+.. DrGPUM documentation master file, created by
    sphinx-quickstart on Sun Mar 21 02:21:40 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-GVProf: A Value Profiler for GPUs
+DrGPUM: A Memory Profiler for GPUs
 ==================================
 
-GVProf is an advanced value profiler that locates value redundancy problems in GPU-accelerated applications.
-GVProf's code is available on `Github <https://github.com/Jokeren/GVProf>`_.
+DrGPUM is an advanced memory profiler that locates memory inefficiencies in GPU-accelerated applications.
+DrGPUM's code is available on `Github <https://github.com/Lin-Mao/DrGPUM.git>`_.
 
 .. toctree::
    :maxdepth: 3
-   :caption: GVProf Basics
+   :caption: DrGPUM Basics
 
    preface
    install
@@ -20,7 +20,7 @@ GVProf's code is available on `Github <https://github.com/Jokeren/GVProf>`_.
 
 .. toctree::
    :maxdepth: 1
-   :caption: GVProf Development
+   :caption: DrGPUM Development
 
    workflow
    roadmap
@@ -35,7 +35,7 @@ GVProf's code is available on `Github <https://github.com/Jokeren/GVProf>`_.
 
 .. toctree::
    :maxdepth: 3
-   :caption: GVProf Samples
+   :caption: DrGPUM Samples
 
    unit_tests
    rodinia

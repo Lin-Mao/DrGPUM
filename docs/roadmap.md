@@ -1,10 +1,10 @@
 # Roadmap
 
-This document describes incoming features and release plans for GVProf. Since GVProf is a growing project, it has many components need fix and enhancement. Suggestions and feature requests are welcome. Users can post questions on Github's [discussion forum](https://github.com/GVProf/GVProf/discussions).
+This document describes incoming features and release plans for DrGPUM. Since DrGPUM is a growing project, it has many components need fix and enhancement. Suggestions and feature requests are welcome. Users can post questions on Github's [discussion forum](https://github.com/Lin-Mao/DrGPUM/issues).
 
 ## Release v2.2
 
-We plan release *v2.2* around Fall 2021, which will focus on enhancing the stability and compatibility of GVProf. Also, a few new features, such as customized memory allocator support and more accessible function filters are planned to be integrated.
+We plan release *v2.2* around Fall 2021, which will focus on enhancing the stability and compatibility of DrGPUM. Also, a few new features, such as customized memory allocator support and more accessible function filters are planned to be integrated.
 
 
 - Features
@@ -31,7 +31,7 @@ We plan release *v2.2* around Fall 2021, which will focus on enhancing the stabi
 
     - CMake
 
-        Add CMake configurations to GVProf in addition to Makefile
+        Add CMake configurations to DrGPUM in addition to Makefile
 
     - Unittest
 
@@ -55,4 +55,4 @@ We haven't decided when to solve the following issues.
 
 - HPCToolkit Merge
 
-    Merge the latest HPCToolkit master into GVProf.
+    Merge the latest HPCToolkit master into DrGPUM.

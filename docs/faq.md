@@ -24,7 +24,7 @@ msg: Begin analyzing : /path/to/python/lib/python3.8/site-packages/torch/lib/lib
 
 ## Accelerate data flow profiling
 
-The following three knobs are helpful for accelerating proiling of applications with many kernels. With all the options turned on, the expected end-to-end of GVProf is approximately 20x, while the overhead could be over 1200x without these knobs. 
+The following three knobs are helpful for accelerating proiling of applications with many kernels. With all the options turned on, the expected end-to-end of DrGPUM is approximately 20x, while the overhead could be over 1200x without these knobs. 
 
 ```bash
 HPCRUN_SANITIZER_READ_TRACE_IGNORE=<if read addresses are ignored, default: 0>

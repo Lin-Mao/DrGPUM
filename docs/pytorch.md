@@ -53,7 +53,7 @@ LD_LIBRARY_PATH=/path/to/python/install/lib/python<version>/site-packages/torch:
 
 ## Optimization
 
-We don't provide an automate performance testing suite for PyTorch in GVProf because recompile PyTorch for just small code changes still take long time and is a pain on low end servers. 
+We don't provide an automate performance testing suite for PyTorch in DrGPUM because recompile PyTorch for just small code changes still take long time and is a pain on low end servers. 
 
 - *data_flow* - *redundant values*
 
