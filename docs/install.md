@@ -1,10 +1,13 @@
 # Install
 
-The documentation includes detailed instructions for every package required by gvprof. One can use `./bin/install` to install all these packages at once.
+The documentation includes detailed instructions for every package required by DrGPUM. One can use `./bin/install` to install all these packages at once.
 
 The install script accepts three arguments in order:
 
 ```bash
+# Specify PyTorch dir
+export PYTORCH_DIR=/path_to_pytorch/torch
+
 ./bin/install <install-prefix> <path/to/cuda> <path/to/compute-sanitizer>
 # default values
 # <install-prefix>=`pwd`/gvprof
@@ -19,8 +22,8 @@ Before you install, make sure all the CUDA related paths (e.g., `LD_LIBRARY_PATH
 If you install cuda toolkit in somewhere else, you need to change the value of `SANITIZER_PATH`.
 
 ```bash
-git clone --recursive git@github.com:Jokeren/GVProf.git
-cd GVProf
+git clone --recursive https://github.com/Lin-Mao/DrGPUM.git && cd DrGPUM
+cd DrGPUM
 make PREFIX=/path/to/gpu-patch/installation SANITIZER_PATH=/usr/local/cuda/compute-sanitizer/ install
 ```
 ## Dependencies
@@ -35,10 +38,16 @@ source ${SPACK_ROOT}/share/spack/setup-env.sh
 - required packages
 
 ```bash
-spack spec hpctoolkit
-spack install --only dependencies hpctoolkit ^dyninst@master
-# XXX(Keren): Temporary workaround until new hpctoolkit is merged
-spack install libmonitor@master +dlopen +hpctoolkit
+# Install hpctoolkit dependencies
+spack install --only dependencies hpctoolkit ^dyninst@master ^binutils@2.34+libiberty~nls 
+spack install libmonitor@master+dlopen+hpctoolkit
+spack install libunwind
+
+spack install mbedtls gotcha
+
+# Python version for torch monitor
+PY_VERSION=3.8
+spack install python@$PY_VERSION
 ```
 
 ## Redshow
@@ -75,7 +84,7 @@ Add following lines into your `.bashrc` file and source it.
 
 ```bash
 export PATH=/path/to/hpctoolkit/install/bin/:$PATH
-export PATH=/path/to/GVProf/install/bin/:$PATH
+export PATH=/path/to/DrGPUM/install/bin/:$PATH
 export PATH=/path/to/redshow/install/bin/:$PATH
 ```
 
@@ -84,6 +93,6 @@ Test if gvprof works.
 ```bash
 cd ./samples/vectorAdd.f32
 make
-gvprof -e redundancy ./vectorAdd
+gvprof -v -e redundancy ./vectorAdd
 hpcviewer gvprof-database
 ```

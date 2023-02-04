@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'GVProf'
-copyright = '2021, Rice University and Scalable Machines Research'
-author = 'Keren Zhou'
+project = 'DrGPUM'
+copyright = '2023, University of California, Merced'
+author = 'Mao Lin'
 
 
 # -- General configuration ---------------------------------------------------
