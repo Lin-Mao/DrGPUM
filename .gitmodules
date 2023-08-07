@@ -10,6 +10,3 @@
 [submodule "hpctoolkit"]
 	path = hpctoolkit
 	url = https://github.com/Lin-Mao/hpctoolkit.git
-[submodule "torch-monitor"]
-	path = torch-monitor
-	url = https://github.com/Lin-Mao/torch-monitor.git
