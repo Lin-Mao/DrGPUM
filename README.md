@@ -12,6 +12,8 @@ DrGPUM is a memory profiler for NVIDIA GPUs to explore memory inefficiencies in 
 ```bash
 git clone --recursive https://github.com/Lin-Mao/DrGPUM.git && cd DrGPUM
 
+git submodule update --init --recursive
+
 # Specify PyTorch dir
 export PYTORCH_DIR=path_to_pytorch/torch
 
@@ -38,4 +40,4 @@ gvprof -v -e memory_liveness ./vectorAdd
 
 ## Papers
 
-- Mao Lin, Keren Zhou, and Pengfei Su. 2023. DrGPUM: Guiding Memory Optimization for GPU-accelerated Applications. In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 3 (ASPLOS ’23), March 25–29, 2023, Vancouver, BC, Canada. ACM, New York, NY, USA, 15 pages. https://doi.org/10.1145/3582016.3582044
+- Mao Lin, Keren Zhou, and Pengfei Su. 2023. [DrGPUM: Guiding Memory Optimization for GPU-accelerated Applications](https://doi.org/10.1145/3582016.3582044). In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 3 (ASPLOS ’23), March 25–29, 2023, Vancouver, BC, Canada. ACM, New York, NY, USA, 15 pages.
