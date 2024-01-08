@@ -81,28 +81,9 @@ UNWIND=$(spack find --path libunwind | tail -n 1 | cut -d ' ' -f 3)
 PY_DEV=$(spack find --path python@$PY_VERSION | tail -n 1 | cut -d ' ' -f 3)
 
 # Install torch monitor
-#cd $SOURCE_DIR
-#cd torch-monitor
-#mkdir build && cd build
-#mkdir $DIR/torch-monitor
-## export PROJECT_BINARY_DIR = $DIR/torch-monitor
-## cmake .. -DTORCH_DIR=$PYTORCH_DIR
-#cmake .. -DTORCH_DIR=/home/xjding/anaconda3/envs/new_torch_monitor/lib/python3.11/site-packages/torch/ \
-#-DCMAKE_INSTALL_PREFIX=$DIR/torch-monitor \
-#-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=$DIR/torch-monitor/bin \
-#-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$DIR/torch-monitor/lib \
-#-DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=$DIR/torch-monitor/lib
-###
-#make -j16 install
-#cp -rf $SOURCE_DIR/torch-monitor/build/* $DIR/torch-monitor
-##make CMAKE_BINARY_DIR=$DIR/torch-monitor install
-##make PREFIX=$DIR/torch-monitor PYTHON_INCLUDE_DIR=$PY_DEV/include/python$PY_VERSION \
-##PYTHON_LIB_DIR=$PY_DEV/lib/python$PY_VERSION PYTHON_VERSION=$PY_VERSION \
-##TORCH_DIR=$PYTORCH_DIR install
-
 mkdir $DIR/torch-monitor
 cd $DIR/torch-monitor
-cmake $SOURCE_DIR/torch-monitor -DTORCH_DIR=/home/xjding/anaconda3/envs/new_torch_monitor/lib/python3.11/site-packages/torch/ #$PYTORCH_DIR
+cmake $SOURCE_DIR/torch-monitor -DTORCH_DIR=$PYTORCH_DIR
 make DESTDIR=$DIR/torch-monitor -j16 install
 
 
