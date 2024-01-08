@@ -1,5 +1,6 @@
-#!/bin/bash            
-
+#!/bin/bash
+# fix this later
+# alias python=/home/xjding/anaconda3/envs/new_torch_monitor/bin/python3.11
 SOURCE_DIR=$(pwd)
 DIR=""
 CUDA_PATH=/usr/local/cuda/
@@ -22,7 +23,7 @@ else
         SANITIZER_PATH=$3
       fi
     fi
-  fi  
+  fi
 fi
 
 
@@ -44,21 +45,28 @@ fi
 
 cd $DIR
 # Install spack
-git clone https://github.com/Lin-Mao/spack.git
+#git clone https://github.com/Lin-Mao/spack.git
+git clone https://github.com/spack/spack.git
 export SPACK_ROOT=$(pwd)/spack
 export PATH=${SPACK_ROOT}/bin:${PATH}
 source ${SPACK_ROOT}/share/spack/setup-env.sh
 
+# Fix bug
+#spack install libelf mbedtls gotcha@1.0.4 ##boost@1.83.0
+
 # Install hpctoolkit dependencies
-spack install --only dependencies hpctoolkit ^dyninst@master ^binutils@2.34+libiberty~nls 
+# spack install --only dependencies hpctoolkit ^dyninst@master ^binutils@2.34+libiberty~nls
+spack install --only dependencies hpctoolkit@2021.05.15 ^dyninst@12.3.0 ^binutils@2.34+libiberty~nls ^boost@1.83.0 ^libtool@2.4.6
 spack install libmonitor@master+dlopen+hpctoolkit
 spack install libunwind
 
-# Fix bug
-spack install mbedtls gotcha
+## Fix bug
+#spack install libelf mbedtls gotcha@1.0.4
+spack install mbedtls@3.3.0%gcc@12.3.0+pic build_system=makefile build_type=Release libs=static arch=linux-ubuntu22.04-icelake gotcha@1.0.4
 
 # Python version for torch monitor
-PY_VERSION=3.8
+PY_VERSION=3.11
+#3.10
 spack install python@$PY_VERSION
 
 # Install gpu-patch
@@ -73,17 +81,37 @@ UNWIND=$(spack find --path libunwind | tail -n 1 | cut -d ' ' -f 3)
 PY_DEV=$(spack find --path python@$PY_VERSION | tail -n 1 | cut -d ' ' -f 3)
 
 # Install torch monitor
-cd $SOURCE_DIR
-cd torch-monitor
-make PREFIX=$DIR/torch-monitor PYTHON_INCLUDE_DIR=$PY_DEV/include/python$PY_VERSION \
-PYTHON_LIB_DIR=$PY_DEV/lib/python$PY_VERSION PYTHON_VERSION=$PY_VERSION \
-TORCH_DIR=$PYTORCH_DIR install
+#cd $SOURCE_DIR
+#cd torch-monitor
+#mkdir build && cd build
+#mkdir $DIR/torch-monitor
+## export PROJECT_BINARY_DIR = $DIR/torch-monitor
+## cmake .. -DTORCH_DIR=$PYTORCH_DIR
+#cmake .. -DTORCH_DIR=/home/xjding/anaconda3/envs/new_torch_monitor/lib/python3.11/site-packages/torch/ \
+#-DCMAKE_INSTALL_PREFIX=$DIR/torch-monitor \
+#-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=$DIR/torch-monitor/bin \
+#-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$DIR/torch-monitor/lib \
+#-DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=$DIR/torch-monitor/lib
+###
+#make -j16 install
+#cp -rf $SOURCE_DIR/torch-monitor/build/* $DIR/torch-monitor
+##make CMAKE_BINARY_DIR=$DIR/torch-monitor install
+##make PREFIX=$DIR/torch-monitor PYTHON_INCLUDE_DIR=$PY_DEV/include/python$PY_VERSION \
+##PYTHON_LIB_DIR=$PY_DEV/lib/python$PY_VERSION PYTHON_VERSION=$PY_VERSION \
+##TORCH_DIR=$PYTORCH_DIR install
+
+mkdir $DIR/torch-monitor
+cd $DIR/torch-monitor
+cmake $SOURCE_DIR/torch-monitor -DTORCH_DIR=/home/xjding/anaconda3/envs/new_torch_monitor/lib/python3.11/site-packages/torch/ #$PYTORCH_DIR
+make DESTDIR=$DIR/torch-monitor -j16 install
+
 
 # Install redshow
 cd $SOURCE_DIR
 cd redshow
+# make PREFIX=$DIR/redshow BOOST_DIR=$B GPU_PATCH_DIR=$DIR/gpu-patch/ install
 make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ \
-TORCH_MONITOR_DIR=$DIR/torch-monitor install
+TORCH_MONITOR_DIR=$DIR/torch-monitor DEBUG=1 install
 
 # install hpctoolkit
 cd $SOURCE_DIR
@@ -92,7 +120,7 @@ mkdir build
 cd build
 ../configure --prefix=$DIR/hpctoolkit --with-cuda=$CUDA_PATH \
 --with-sanitizer=$SANITIZER_PATH --with-gpu-patch=$DIR/gpu-patch \
---with-redshow=$DIR/redshow --with-spack=$S 
+--with-redshow=$DIR/redshow --with-spack=$S --enable-develop
 make install -j16
 
 cd $SOURCE_DIR
