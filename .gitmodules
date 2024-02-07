@@ -6,10 +6,10 @@
 	url = https://github.com/Jokeren/jquery.graphviz.svg.git
 [submodule "redshow"]
 	path = redshow
-	url = https://github.com/Lin-Mao/redshow.git
+	url = https://github.com/David-Dingle/redshow.git
 [submodule "hpctoolkit"]
 	path = hpctoolkit
-	url = https://github.com/Lin-Mao/hpctoolkit.git
+	url = https://github.com/David-Dingle/hpctoolkit.git
 [submodule "torch-monitor"]
 	path = torch-monitor
-	url = https://github.com/Lin-Mao/torch-monitor.git
+	url = https://github.com/Jokeren/torch-monitor.git
