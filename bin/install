@@ -1,6 +1,5 @@
 #!/bin/bash
-# fix this later
-# alias python=/home/xjding/anaconda3/envs/new_torch_monitor/bin/python3.11
+
 SOURCE_DIR=$(pwd)
 DIR=""
 CUDA_PATH=/usr/local/cuda/
@@ -45,7 +44,6 @@ fi
 
 cd $DIR
 # Install spack
-#git clone https://github.com/Lin-Mao/spack.git
 git clone https://github.com/spack/spack.git
 export SPACK_ROOT=$(pwd)/spack
 export PATH=${SPACK_ROOT}/bin:${PATH}
@@ -55,18 +53,15 @@ source ${SPACK_ROOT}/share/spack/setup-env.sh
 #spack install libelf mbedtls gotcha@1.0.4 ##boost@1.83.0
 
 # Install hpctoolkit dependencies
-# spack install --only dependencies hpctoolkit ^dyninst@master ^binutils@2.34+libiberty~nls
-spack install --only dependencies hpctoolkit@2021.05.15 ^dyninst@12.3.0 ^binutils@2.34+libiberty~nls ^boost@1.83.0 ^libtool@2.4.6
+spack install --only dependencies hpctoolkit@2021.05.15 ^dyninst@12.3.0 ^binutils@2.35+libiberty~nls ^boost@1.83.0 ^libtool@2.4.6
 spack install libmonitor@master+dlopen+hpctoolkit
 spack install libunwind
 
 ## Fix bug
-#spack install libelf mbedtls gotcha@1.0.4
 spack install mbedtls@3.3.0%gcc@12.3.0+pic build_system=makefile build_type=Release libs=static arch=linux-ubuntu22.04-icelake gotcha@1.0.4
 
 # Python version for torch monitor
 PY_VERSION=3.11
-#3.10
 spack install python@$PY_VERSION
 
 # Install gpu-patch
@@ -92,7 +87,7 @@ cd $SOURCE_DIR
 cd redshow
 # make PREFIX=$DIR/redshow BOOST_DIR=$B GPU_PATCH_DIR=$DIR/gpu-patch/ install
 make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ \
-TORCH_MONITOR_DIR=$DIR/torch-monitor DEBUG=1 install
+TORCH_MONITOR_DIR=$DIR/torch-monitor/usr/local/ DEBUG=1 install
 
 # install hpctoolkit
 cd $SOURCE_DIR
