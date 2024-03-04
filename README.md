@@ -10,9 +10,7 @@ DrGPUM is a memory profiler for NVIDIA GPUs to explore memory inefficiencies in 
 ## Quick Start
 
 ```bash
-git clone --recursive https://github.com/Lin-Mao/DrGPUM.git && cd DrGPUM
-
-git submodule update --init --recursive
+gh repo clone https://github.com/David-Dingle/DrGPUM.git -- --recurse-submodules && cd DrGPUM
 
 # Specify PyTorch dir
 export PYTORCH_DIR=path_to_pytorch/torch
