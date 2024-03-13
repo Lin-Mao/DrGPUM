@@ -111,7 +111,14 @@ rm -rf $DATABASE
 
 echo "First pass: dump and analyze CPU and GPU binaries"
 
-$GVPROF_LAUNCHER hpcrun -e gpu=nvidia -o $MEASUREMENTS $GVPROF_EXEC $GVPROF_ARGS &> $GVPROF_REDIRECT
+# Setting 1 for .cu codes
+# $GVPROF_LAUNCHER hpcrun -e gpu=nvidia -o $MEASUREMENTS $GVPROF_EXEC $GVPROF_ARGS &> $GVPROF_REDIRECT
+
+# Setting 2 for PyTorch codes
+export LD_LIBRARY_PATH=/home/xjding/anaconda3/envs/new_torch_monitor/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/xjding/anaconda3/envs/new_torch_monitor/lib/python3.11/site-packages/torch:$LD_LIBRARY_PATH
+$GVPROF_LAUNCHER hpcrun -e gpu=nvidia -o $MEASUREMENTS python $GVPROF_EXEC $GVPROF_ARGS &> $GVPROF_REDIRECT
+
 rm -rf $MEASUREMENTS/*.hpcrun
 
 if [ ! -z "$GVPROF_CFG" ]
@@ -126,7 +133,12 @@ hpcstruct $GVPROF_EXEC -o $BASENAME".hpcstruct" &>> $GVPROF_REDIRECT
 
 echo "Second pass: profiling"
 
-$GVPROF_LAUNCHER hpcrun -e gpu=nvidia,$GVPROF_EVENT$GVPROF_SAMPLING_FREQUENCY -o $MEASUREMENTS $GVPROF_CONTROL_KNOBS $GVPROF_EXEC $GVPROF_ARGS &>> $GVPROF_REDIRECT
+## Setting 1 for .cu codes
+# $GVPROF_LAUNCHER hpcrun -e gpu=nvidia,$GVPROF_EVENT$GVPROF_SAMPLING_FREQUENCY -o $MEASUREMENTS $GVPROF_CONTROL_KNOBS $GVPROF_EXEC $GVPROF_ARGS &>> $GVPROF_REDIRECT
+
+# Setting 2 for PyTorch codes
+hpcrun -e gpu=nvidia,$GVPROF_EVENT$GVPROF_SAMPLING_FREQUENCY -o $MEASUREMENTS $GVPROF_CONTROL_KNOBS python $GVPROF_EXEC $GVPROF_ARGS &> $GVPROF_REDIRECT
+
 hpcprof -S $BASENAME".hpcstruct" -o $DATABASE $MEASUREMENTS &>> $GVPROF_REDIRECT
 
 echo "Done..."
