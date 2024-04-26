@@ -85,9 +85,11 @@ make DESTDIR=$DIR/torch-monitor -j16 install
 # Install redshow
 cd $SOURCE_DIR
 cd redshow
-# make PREFIX=$DIR/redshow BOOST_DIR=$B GPU_PATCH_DIR=$DIR/gpu-patch/ install
-make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch/ \
-TORCH_MONITOR_DIR=$DIR/torch-monitor/usr/local/ DEBUG=1 install
+# make PREFIX=$DIR/redshow BOOST_DIR=$B GPU_PATCH_DIR=$DIR/gpu-patch/ install # PYTORCH_DIR=$PYTORCH_DIR \
+mkdir $DIR/redshow
+make clean
+make PREFIX=$DIR/redshow BOOST_DIR=$B LIBUNWIND_DIR=$UNWIND GPU_PATCH_DIR=$DIR/gpu-patch \
+TORCH_MONITOR_DIR=$DIR/torch-monitor/usr/local DEBUG=1 install
 
 # install hpctoolkit
 cd $SOURCE_DIR
