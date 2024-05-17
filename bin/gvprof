@@ -138,8 +138,15 @@ echo "Second pass: profiling"
 
 # Setting 2 for PyTorch codes
 #hpcrun -e gpu=nvidia,$GVPROF_EVENT$GVPROF_SAMPLING_FREQUENCY -o $MEASUREMENTS $GVPROF_CONTROL_KNOBS python $GVPROF_EXEC $GVPROF_ARGS &>> $GVPROF_REDIRECT
+
+echo "Invoke hpcprof"
+
 hpcrun -e gpu=nvidia,$GVPROF_EVENT$GVPROF_SAMPLING_FREQUENCY -o $MEASUREMENTS -ck HPCRUN_SANITIZER_READ_TRACE_IGNORE=1 -ck HPCRUN_SANITIZER_TORCH_VIEW=1 -ck HPCRUN_SANITIZER_GPU_ANALYSIS_BLOCKS=0 -ck HPCRUN_SANITIZER_GPU_PATCH_RECORD_NUM=131072 python $GVPROF_EXEC $GVPROF_ARGS &>> $GVPROF_REDIRECT
 
-#hpcprof -S $BASENAME".hpcstruct" -o $DATABASE $MEASUREMENTS &>> $GVPROF_REDIRECT
+hpcprof -S $BASENAME".hpcstruct" -o $DATABASE $MEASUREMENTS &>> $GVPROF_REDIRECT
 
 echo "Done..."
+
+
+# hpcstruct /home/xjding/anaconda3/envs/new_torch_monitor/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so
+# hpcprof -S libtorch_cpu.so.hpcstruct gvprof-measurements
